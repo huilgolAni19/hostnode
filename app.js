@@ -1,34 +1,55 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
+var https = require('https');
+
 const port = 3443;
 const base_path = '/njapp/';
+const ssl_certificate_base_path = '/home/anirudh/Documents/webtools/SSL-Certificates/Apache2-nexussoftdev_com/'
+//const ssl_certificate_base_path = '/Users/anirudhhuilgol/Documents/SSL-Certificate/Apache2-nexussoftdev_com/'
+var keyFilePath = `${ssl_certificate_base_path}nexussoftdev.key`;
+var rootIntermidateCertificate = `${ssl_certificate_base_path}nexussoftdev-bundle.crt`;
+var nexussoftdevCert = `${ssl_certificate_base_path}nexussoftdev.crt`
+let forwardUrl = `https://nexussoftdev.com:3443/njapp/`;
 
 
+console.log(`\n\nPath For rootIntermidateCertificate ${rootIntermidateCertificate}\n\nPath For keyFile ${keyFilePath}\n\nPath For nexussoftdev Cert ${nexussoftdevCert}\n\n`);
+
+var key = fs.readFileSync(keyFilePath);
+var cert = fs.readFileSync(nexussoftdevCert);
+var ca = fs.readFileSync(rootIntermidateCertificate);
+
+//SSL-options
+var options = {
+  key: key,
+  cert: cert,
+  ca: ca
+};
+
+//console.log(ca, cert, key);
 app.set('view engine', 'ejs');
 
-app.get('/njapp/', (req, resp) => {
+app.get('/', (request, response) => {
+  response.redirect(forwardUrl);
+});
+
+app.get(`${base_path}`, (req, resp) => {
     var data = {
       users: getData()
     }
     resp.render('pages/indexpage', data);
-
 });
 
-app.get('/njapp/hello/:userName', (request, response) => {
-  //response.send("<h1>Hello World</h1>");
+app.get(`${base_path}hello/:userName`, (request, response) => {
   var usr = request.params.userName;
-  //console.log("User Name is: ", usr);
-
-
   var data = {
     user:usr
   };
-
   response.render('pages/firstPage', data);
 });
 
-
-app.listen(port, () => {
+var server = https.createServer(options, app);
+server.listen(port, () => {
   console.log(`Server running on port ${port}`);
   console.log(`Open http://localhost:${port}`);
 });
