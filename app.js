@@ -10,7 +10,7 @@ const ssl_certificate_base_path = '/home/anirudh/Documents/webtools/SSL-Certific
 var keyFilePath = `${ssl_certificate_base_path}nexussoftdev.key`;
 var rootIntermidateCertificate = `${ssl_certificate_base_path}nexussoftdev-bundle.crt`;
 var nexussoftdevCert = `${ssl_certificate_base_path}nexussoftdev.crt`
-const forwardUrl = `https://nexussoftdev.com:3443/njapp/`;
+const forwardUrl = 'https://nexussoftdev.com:3443/njapp/';
 
 
 console.log(`\n\nPath For rootIntermidateCertificate ${rootIntermidateCertificate}\n\nPath For keyFile ${keyFilePath}\n\nPath For nexussoftdev Cert ${nexussoftdevCert}\n\n`);
