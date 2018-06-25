@@ -5,12 +5,12 @@ var https = require('https');
 
 const port = 3443;
 const base_path = '/njapp/';
-const ssl_certificate_base_path = '/home/anirudh/Documents/webtools/SSL-Certificates/Apache2-nexussoftdev_com/'
-//const ssl_certificate_base_path = '/Users/anirudhhuilgol/Documents/SSL-Certificate/Apache2-nexussoftdev_com/'
+//const ssl_certificate_base_path = '/home/anirudh/Documents/webtools/SSL-Certificates/Apache2-nexussoftdev_com/'
+const ssl_certificate_base_path = '/Users/anirudhhuilgol/Documents/SSL-Certificate/Apache2-nexussoftdev_com/'
 var keyFilePath = `${ssl_certificate_base_path}nexussoftdev.key`;
 var rootIntermidateCertificate = `${ssl_certificate_base_path}nexussoftdev-bundle.crt`;
 var nexussoftdevCert = `${ssl_certificate_base_path}nexussoftdev.crt`
-const forwardUrl = 'https://nexussoftdev.com:3443/njapp/';
+var forwardUrl = `${base_path}`;
 
 
 console.log(`\n\nPath For rootIntermidateCertificate ${rootIntermidateCertificate}\n\nPath For keyFile ${keyFilePath}\n\nPath For nexussoftdev Cert ${nexussoftdevCert}\n\n`);
