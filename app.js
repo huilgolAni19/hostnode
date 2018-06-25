@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
-const port = 3443
-
+const express = require('express');
+const app = express();
+const port = 3443;
+const base_path = '/njapp/';
 
 
 app.set('view engine', 'ejs');
@@ -14,7 +14,7 @@ app.get('/njapp/', (req, resp) => {
 
 });
 
-app.get('/hello/:userName', (request, response) => {
+app.get('/njapp/hello/:userName', (request, response) => {
   //response.send("<h1>Hello World</h1>");
   var usr = request.params.userName;
   //console.log("User Name is: ", usr);
