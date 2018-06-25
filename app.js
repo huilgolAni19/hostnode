@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3030
+const port = 443
 
 
 
 app.set('view engine', 'ejs');
 
-app.get('/', (req, resp) => {
+app.get('/njapp/', (req, resp) => {
     var data = {
       users: getData()
     }
